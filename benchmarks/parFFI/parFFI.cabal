@@ -1,0 +1,96 @@
+cabal-version:         2.4
+name:                  parFFI
+version:               0.1.0.0
+
+
+common deps
+  build-depends:       base
+                     , parallel
+                     , time
+                     , deepseq
+                     , mtl
+                     , vecmat
+                     , logging
+
+  default-language:    Haskell2010
+  ghc-options:         -O2
+                       -eventlog
+                       -Weverything
+                       -Wno-all-missed-specialisations
+                       -Wno-implicit-prelude
+                       -Wno-missed-specialisations
+                       -Wno-safe
+                       -Wno-unsafe
+                       -Wno-unused-packages
+                       -Wno-missing-import-lists
+                       -Wno-missing-export-lists
+                       -Wno-missing-local-signatures
+                       -Wno-monomorphism-restriction
+                       -Wno-missing-deriving-strategies
+                       -Wno-missing-kind-signatures
+
+  -- other-modules:       Paths_parallelization
+  if impl(ghc >= 8.10)
+    ghc-options:       -Wno-prepositive-qualified-module
+                       -Wno-missing-safe-haskell-mode
+
+
+library
+  import:          deps
+  hs-source-dirs:  src
+  extra-libraries:
+    ffi_c
+  exposed-modules:
+    MyFFI
+  other-modules:
+
+
+executable composeLayersFFI
+  import:              deps
+  hs-source-dirs:      app
+  main-is:             composeLayersFFI.hs
+  build-depends:       parFFI
+  ghc-options:         -O2
+                       -threaded
+                       -feager-blackholing
+                       -rtsopts
+
+executable largeMatFFI
+  import:              deps
+  hs-source-dirs:      app
+  main-is:             largeMatFFI.hs
+  build-depends:       parFFI
+  ghc-options:         -O2
+                       -threaded
+                       -feager-blackholing
+                       -rtsopts
+
+executable ewmTest
+  import:              deps
+  hs-source-dirs:      app
+  main-is:             ewmTest.hs
+  build-depends:       parFFI
+  ghc-options:         -O2
+                       -threaded
+                       -feager-blackholing
+                       -rtsopts
+
+executable vecMatMultTest
+  import:              deps
+  hs-source-dirs:      app
+  main-is:             vecMatMultTest.hs
+  build-depends:       parFFI
+  ghc-options:         -O2
+                       -threaded
+                       -feager-blackholing
+                       -rtsopts
+
+executable composeWithTanhFFI
+  import:              deps
+  hs-source-dirs:      app
+  main-is:             composeWithTanhFFI.hs
+  build-depends:       parFFI
+  ghc-options:         -O2
+                       -threaded
+                       -feager-blackholing
+                       -rtsopts

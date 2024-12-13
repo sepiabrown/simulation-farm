@@ -1,0 +1,133 @@
+cabal-version:         2.4
+name:                  parConduit
+version:               0.1.0.0
+author:                Haedosa
+maintainer:            Haedosa
+category:              Proprietary
+
+common common
+  build-depends:
+      base
+    , array
+    , async
+    , binary
+    , bytestring
+    , conduit
+    , conduit-concurrent-map
+    , conduit-parallel
+    , containers
+    , deepseq
+    , ghc
+    , ghc-compact
+    , hmatrix
+    , logging
+    , monad-par
+    , monad-par-extras
+    , mtl
+    , parallel
+    , random
+    , say
+    , split
+    , time
+    , transformers
+    , unliftio
+    , vector
+  default-language:
+    Haskell2010
+  ghc-options:
+    -O2 -j
+    -Weverything
+    -Wno-all-missed-specialisations
+    -Wno-implicit-prelude
+    -Wno-missed-specialisations
+    -Wno-missing-deriving-strategies
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-kind-signatures
+    -Wno-missing-local-signatures
+    -Wno-missing-safe-haskell-mode
+    -Wno-monomorphism-restriction
+    -Wno-prepositive-qualified-module
+    -Wno-safe
+    -Wno-unsafe
+    -Wno-unused-packages
+    -eventlog
+    -fprint-potential-instances
+  default-extensions:
+      AllowAmbiguousTypes
+    , BangPatterns
+    , ConstraintKinds
+    , DataKinds
+    , DeriveAnyClass
+    , DeriveFoldable
+    , DeriveFunctor
+    , DeriveGeneric
+    , DeriveTraversable
+    , DerivingStrategies
+    , DerivingVia
+    , DisambiguateRecordFields
+    , DuplicateRecordFields
+    , EmptyCase
+    , ExistentialQuantification
+    , FlexibleContexts
+    , FlexibleInstances
+    , FunctionalDependencies
+    , GADTs
+    , GeneralizedNewtypeDeriving
+    , ImportQualifiedPost
+    , KindSignatures
+    , LambdaCase
+    , MultiParamTypeClasses
+    , NamedFieldPuns
+    , NoStarIsType
+    , NumericUnderscores
+    , OverloadedLabels
+    , OverloadedRecordDot
+    , OverloadedStrings
+    , PartialTypeSignatures
+    , QuasiQuotes
+    , RankNTypes
+    , RecordWildCards
+    , ScopedTypeVariables
+    , StandaloneDeriving
+    , StandaloneKindSignatures
+    , TemplateHaskell
+    , TupleSections
+    , TypeApplications
+    , TypeFamilies
+    , TypeFamilyDependencies
+    , TypeOperators
+    , TypeSynonymInstances
+    , UndecidableInstances
+    , ViewPatterns
+
+
+library
+  import:          common
+  hs-source-dirs:  src
+  extra-libraries:
+  exposed-modules:
+    ParConduit.Computation
+    ParConduit.Parallelizer
+  other-modules:
+  C-sources:           src/ParConduit/C/fun.c
+
+executable ffi
+  import:              common
+  hs-source-dirs:      app
+  main-is:             ffi.hs
+  build-depends:       parConduit
+  ghc-options:         -O2
+                       -threaded
+                       -rtsopts
+                       -feager-blackholing
+
+executable compute
+  import:              common
+  hs-source-dirs:      app
+  main-is:             compute.hs
+  build-depends:       parConduit
+  ghc-options:         -O2
+                       -threaded
+                       -rtsopts
+                       -feager-blackholing

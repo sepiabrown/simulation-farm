@@ -1,0 +1,61 @@
+cradle:
+  cabal:
+    - path: "logging/src"
+      component: "lib:logging"
+
+    - path: "parBlas/src"
+      component: "lib:parBlas"
+
+    - path: "parBlas/app/blasCallTest.hs"
+      component: "parBlas:exe:blasCallTest"
+
+    - path: "parBlas/app/composeLayersBlas.hs"
+      component: "parBlas:exe:composeLayersBlas"
+
+    - path: "parBlas/app/blasFFIComp.hs"
+      component: "parBlas:exe:blasFFIComp"
+
+    - path: "parBlas/app/composeWithTanhBlas.hs"
+      component: "parBlas:exe:composeWithTanhBlas"
+
+    - path: "parConduit/src"
+      component: "lib:parConduit"
+
+    - path: "parConduit/app/ffi.hs"
+      component: "parConduit:exe:ffi"
+
+    - path: "parConduit/app/compute.hs"
+      component: "parConduit:exe:compute"
+
+    - path: "parFFI/src"
+      component: "lib:parFFI"
+
+    - path: "parFFI/app/composeLayersFFI.hs"
+      component: "parFFI:exe:composeLayersFFI"
+
+    - path: "parFFI/app/largeMatFFI.hs"
+      component: "parFFI:exe:largeMatFFI"
+
+    - path: "parFFI/app/ewmTest.hs"
+      component: "parFFI:exe:ewmTest"
+
+    - path: "parFFI/app/vecMatMultTest.hs"
+      component: "parFFI:exe:vecMatMultTest"
+
+    - path: "parFFI/app/composeWithTanhFFI.hs"
+      component: "parFFI:exe:composeWithTanhFFI"
+
+    - path: "parHmatrix/src"
+      component: "lib:parHmatrix"
+
+    - path: "parHmatrix/app/composeHmatrix.hs"
+      component: "parHmatrix:exe:composeHmatrix"
+
+    - path: "vecmat/src"
+      component: "lib:vecmat"
+
+    - path: "vecmat/app/splitTest.hs"
+      component: "vecmat:exe:splitTest"
+
+    - path: "vecmat/app/mapTest.hs"
+      component: "vecmat:exe:mapTest"
